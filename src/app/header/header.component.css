@@ -1,0 +1,13 @@
+.nav-form{
+    width: 60%;
+direction: rtl;
+}
+.nav-form input{
+    margin-left: 10px;
+    width: 74%;
+}
+.nav-form button{
+    width: 10%;
+    font-size: 80%; 
+    text-align: center;
+}
