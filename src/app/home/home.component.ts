@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Comment } from '../comment';
+import { Element } from '@angular/compiler';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,7 @@ import { Comment } from '../comment';
 })
 export class HomeComponent implements OnInit {
   comments : Comment[] =[];
+  @ViewChild('commentText') comm :ElementRef;
   constructor() { }
 
   ngOnInit() {
@@ -15,7 +17,7 @@ export class HomeComponent implements OnInit {
 
   addcomment(){
     let c: Comment={
-      comment: '',
+      comment: this.comm.nativeElement.value,
       like: 0,
       dislike : 0,
       numberOfReviews :0 ,
@@ -23,4 +25,16 @@ export class HomeComponent implements OnInit {
     }
     this.comments.push(c);
   }
+  reviewsCount(c:Comment, n:HTMLInputElement){
+    c.numberOfReviews++;
+    c.star += parseInt(n.value);
+  }
+  increaseLike(c){
+    c.like +=1;
+  }
+
+  increaseDislike(c){
+    c.dislike +=1;
+  }
+
 }
